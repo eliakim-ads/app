@@ -1,7 +1,9 @@
 package com.github.app.model.endereco;
 
+
+
 public record DadosCadastroEndereco(
-    String lougredouro, 
+    String lougradouro, 
     String bairro,
     String cep,
     String complemento,
