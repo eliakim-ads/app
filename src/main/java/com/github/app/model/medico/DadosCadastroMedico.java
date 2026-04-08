@@ -4,7 +4,8 @@ import com.github.app.model.endereco.DadosCadastroEndereco;
 
 public record DadosCadastroMedico(
     String nome, 
-    String email, 
+    String email,
+    String telefone, 
     String crm,
     Especialidade especialidade,
     DadosCadastroEndereco endereco
