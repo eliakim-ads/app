@@ -1,6 +1,6 @@
 package com.github.app.controller;
 
-import com.github.app.AppApplication;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,11 @@ import jakarta.transaction.Transactional;
 @RequestMapping("medicos") // // SPRING WEB- Cria um caminho(endpoint) para a classe MedicoController.
 public class MedicoController {
 
-    private final AppApplication appApplication;
+   
     @Autowired // Sobrescrevendo algo. É um padrão utilizado na injeção de depêndecia.
     private MedicoRepository repository;
 
-    MedicoController(AppApplication appApplication) {
-        this.appApplication = appApplication;
-    }
+   
 
     @PostMapping // SPRING WEB - Informa que o método abaixo é do tipo POST (cadastrar).
     public void cadastrar(@RequestBody DadosCadastroMedico dados) {
@@ -64,34 +62,34 @@ public class MedicoController {
 
     }
 
-    @PutMapping
-    @Transactional // SPRING DATA JPA - Informa ao spring boot que o metodo irá alterar o BD
+    @PutMapping 
+   @Transactional // SPRING DATA JPA - Informa ao spring boot que o metodo irá alterar o BD
     public void atualizar(@RequestBody DadosAtualizacaoMedico dados) {
-        var medico = repository.getReferenceById(dados.id());
+       var medico = repository.getReferenceById(dados.id());
         // var é uma palavra reservada em Java que permite declarar uma variável sem
         // especificar seu tipo. O tipo da variável é inferido pelo compilador com base
         // no valor que foi atribuído a ela.
-        medico.atualizarInformacoes(dados);
-    }
+      medico.atualizarInformacoes(dados);
+   }
 
 
-    // Exclusão - AQUI ESTOU EXCLUINDO MESMO
+    //Exclusão - AQUI ESTOU EXCLUINDO MESMO
     @DeleteMapping("/{id}") // precisa incluir / para um pathVariable
     @Transactional // SPRING DATA JPA - Informa ao spring boot que o metodo irá alterar o BD.
     public void excluir(@PathVariable Integer id){ //@PathVariable - Informa que o springboot precisa pegar o caminho variavel (id) e enteder que é um campo chamado id do Médico.
-        repository.getReferenceById(id);
+        repository.deleteById(id);
         
     }
 
 
-    // Exclusão Lógica - Uma regra de negocio que permite que um registro seja "excluído" sem ser apagado do Banco de dados.
-    @DeleteMapping("/{id}")
-    @Transactional // SPRING DATA JPA - Informa ao spring boot que o metodo irá alterar o BD
-    public void alterarStatus(@PathVariable Integer id){
-         var medico = repository.getReferenceById(id);
-         medico.exclusaoLogica();
+    // // Exclusão Lógica - Uma regra de negocio que permite que um registro seja "excluído" sem ser apagado do Banco de dados.
+    // @DeleteMapping("/{id}")
+    // @Transactional // SPRING DATA JPA - Informa ao spring boot que o metodo irá alterar o BD
+    // public void alterarStatus(@PathVariable Integer id){
+    //      var medico = repository.getReferenceById(id);
+    //      medico.exclusaoLogica();
         
 
-    }
+    // }
 
 }

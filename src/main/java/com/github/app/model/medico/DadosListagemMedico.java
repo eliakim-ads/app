@@ -1,6 +1,7 @@
 package com.github.app.model.medico;
 
 public record DadosListagemMedico(
+    Integer id,
     String nome,
     String email,
     String crm,
@@ -9,7 +10,7 @@ public record DadosListagemMedico(
 ) {
     // Método construtor recebendo o objeto médico e convertendo para json DadosListagemMedico
     public DadosListagemMedico(Medico medico){
-        this(medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade());
+        this( medico.getId(), medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade());
 
     }
     // O this é para chamar o constructor do record, passando do medico para preencher os atributor da classe.
