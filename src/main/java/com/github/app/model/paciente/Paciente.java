@@ -1,7 +1,6 @@
 package com.github.app.model.paciente;
 
 import com.github.app.model.endereco.Endereco;
-
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +43,25 @@ public class Paciente {
         this.cpf = dados.cpf();
         this.telefone = dados.telefone();
 
+
+    }
+
+
+
+        // Método para verificar a atualização do médico, recebendo um objeto do tipo DadosAtualizacaopaciente e atualizando os atributos do paciente com os dados recebidos na requisição.
+    public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {
+        // Verifica se o nome recebido é diferente de null, ou seja, se o nome foi
+        // enviado na requisição da atualização (PUT), e se for diferente de null,
+        // atualiza o nome do médico com o novo nome recebido.
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.email() != null) {
+            this.email = dados.email();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
 
     }
 }
