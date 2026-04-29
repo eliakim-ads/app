@@ -26,12 +26,12 @@ public class Consulta {
     @JoinColumn(name = "medicoId") // define o nome da coluna "elias" na tabela consulta. Ou seja, 
     // pega PK do médico transforma em FK em consulta, com o nome da coluna de medicoId.
     @ManyToOne
-    private Medico medico;
+    private Integer medico;
 
     @JoinColumn(name = "pacienteId") // define o nome da coluna "elias" na tabela consulta. Ou seja, 
     // pega PK do paciente transforma em FK em consulta, com o nome da coluna de pacienteId.
     @ManyToOne
-    private Paciente paciente;
+    private Integer paciente;
     
     @Enumerated(EnumType.STRING)
     private Status status; 
@@ -40,5 +40,14 @@ public class Consulta {
 
     private LocalDateTime data;
 
+    // Terceiro contructor da classe consulta que recebe a conversão que a classe dto DadosAgendamentoConsulta está realizando, ou seja, recealizando json -> OBJ (dict)
+    public Consulta(DadosAgendamentoConsulta dados){
+        this.medico = dados.medicoId();
+        this.paciente = dados.pacienteId();
+        this.status =  dados.status();
+        this.observacao = dados.osbervacao();
+        this.data = dados.data();
+
+    }
     
 }
