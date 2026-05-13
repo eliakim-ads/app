@@ -36,28 +36,29 @@ public class Paciente {
 
 
 
-        // Constructor com o recebimento dos dados convertendo para objeto
+    // Constructor com o recebimento dos dados convertendo para objeto
     public Paciente(DadosCadastroPaciente dados) {
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
         this.telefone = dados.telefone();
+        this.endereco = new Endereco(dados.endereco());
 
 
     }
 
 
 
-        // Método para verificar a atualização do médico, recebendo um objeto do tipo DadosAtualizacaopaciente e atualizando os atributos do paciente com os dados recebidos na requisição.
+        // Método para verificar a atualização do paciente, recebendo um objeto do tipo DadosAtualizacaopaciente e atualizando os atributos do paciente com os dados recebidos na requisição.
     public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {
         // Verifica se o nome recebido é diferente de null, ou seja, se o nome foi
         // enviado na requisição da atualização (PUT), e se for diferente de null,
-        // atualiza o nome do médico com o novo nome recebido.
+        // atualiza o nome do paciente com o novo nome recebido.
         if (dados.nome() != null) {
             this.nome = dados.nome();
         }
-        if (dados.email() != null) {
-            this.email = dados.email();
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
         }
         if (dados.endereco() != null) {
             this.endereco.atualizarInformacoes(dados.endereco());

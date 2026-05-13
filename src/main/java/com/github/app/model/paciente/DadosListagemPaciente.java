@@ -1,18 +1,17 @@
 package com.github.app.model.paciente;
 
 public record DadosListagemPaciente(
-    Integer id,
     String nome,
     String email,
-    String cpf,
-    String telefone
+    String cpf
+
 
 
 ) {
     // Método construtor recebendo o objeto médico e convertendo para json DadosListagemPaciente
     public DadosListagemPaciente(Paciente paciente){
 
-        this(paciente.getId(), paciente.getEmail(), paciente.getCpf(), paciente.getNome(), paciente.getTelefone());
+        this(paciente.getEmail(), paciente.getCpf(), paciente.getNome());
         
 
     }
